@@ -1,0 +1,519 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MotionVerse | Explore Motion</title>
+
+<style>
+*{box-sizing:border-box;scroll-behavior:smooth}
+
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#080d1b;
+ color:white;
+}
+
+header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:20px 7%;
+ background:#101a30;
+ position:sticky;
+ top:0;
+ z-index:10;
+ flex-wrap:wrap;
+}
+
+.logo{font-size:25px;font-weight:bold;color:#55e5ff}
+nav a{color:white;text-decoration:none;margin:10px;font-size:14px}
+nav a:hover{color:#55e5ff}
+
+.hero{
+ text-align:center;
+ padding:90px 15px;
+ background:linear-gradient(135deg,#112d58,#512d80,#122c50);
+}
+
+.hero h1{font-size:55px;margin:10px}
+.hero p{font-size:18px;color:#d4e3ff}
+
+.btn{
+ background:#55e5ff;
+ color:#081326;
+ padding:13px 25px;
+ border:0;
+ border-radius:25px;
+ font-weight:bold;
+ cursor:pointer;
+ text-decoration:none;
+ display:inline-block;
+ margin:8px;
+}
+
+.btn:hover{transform:scale(1.06)}
+
+section{padding:60px 7%}
+.heading{text-align:center;font-size:34px;margin-bottom:35px}
+
+.intro{
+ max-width:800px;
+ margin:auto;
+ text-align:center;
+ line-height:1.8;
+ color:#c7d5ee;
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+ gap:22px;
+}
+
+.card{
+ background:#14213b;
+ border:1px solid #2d4167;
+ padding:22px;
+ border-radius:18px;
+ transition:.3s;
+ cursor:pointer;
+}
+
+.card:hover{
+ transform:translateY(-7px);
+ border-color:#55e5ff;
+ box-shadow:0 8px 25px #55e5ff22;
+}
+
+.emoji{text-align:center;font-size:48px}
+.card h3{color:#55e5ff}
+.card p{line-height:1.6;color:#d1d9eb}
+.more{display:none;color:#9deaff!important}
+.card.active .more{display:block}
+
+.animation{
+ height:120px;
+ background:#091328;
+ border-radius:12px;
+ position:relative;
+ overflow:hidden;
+ margin-top:15px;
+}
+
+.ball{
+ width:25px;height:25px;
+ border-radius:50%;
+ background:#ffca58;
+ position:absolute;
+ top:45px;left:5%;
+}
+
+.move{animation:move 2s infinite alternate ease-in-out}
+@keyframes move{to{left:85%}}
+
+.orbit{
+ position:absolute;
+ width:75px;height:75px;
+ border:3px solid #55e5ff;
+ border-radius:50%;
+ top:20px;left:calc(50% - 37px);
+ animation:spin 3s linear infinite;
+}
+
+.orbit:after{
+ content:"";
+ position:absolute;
+ width:15px;height:15px;
+ background:#ffca58;
+ border-radius:50%;
+ top:-8px;left:27px;
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.swing{
+ position:absolute;
+ top:0;left:50%;
+ width:3px;height:75px;
+ background:#55e5ff;
+ transform-origin:top;
+ animation:swing 1.5s infinite alternate ease-in-out;
+}
+
+.swing:after{
+ content:"";
+ position:absolute;
+ bottom:-13px;left:-11px;
+ width:25px;height:25px;
+ background:#ffca58;
+ border-radius:50%;
+}
+
+@keyframes swing{
+ from{transform:rotate(-35deg)}
+ to{transform:rotate(35deg)}
+}
+
+.controls{
+ text-align:center;
+ background:#14213b;
+ padding:25px;
+ border-radius:18px;
+ max-width:800px;
+ margin:auto;
+}
+
+#demo{
+ height:170px;
+ background:#091328;
+ border-radius:15px;
+ margin:20px 0;
+ position:relative;
+ overflow:hidden;
+}
+
+#demoBall{
+ position:absolute;
+ left:10px;top:70px;
+ font-size:35px;
+}
+
+.info{
+ text-align:center;
+ color:#b9c9e5;
+}
+
+.game{
+ max-width:650px;
+ margin:auto;
+ padding:28px;
+ background:#14213b;
+ border-radius:18px;
+ text-align:center;
+}
+
+.game button{
+ width:100%;
+ padding:14px;
+ margin:7px 0;
+ background:#243657;
+ border:1px solid #3a527c;
+ color:white;
+ border-radius:10px;
+ cursor:pointer;
+}
+
+.game button:hover{background:#355481}
+
+#feedback{color:#55e5ff;font-weight:bold}
+#score{color:#ffce65;font-size:20px}
+
+footer{
+ text-align:center;
+ background:#101a30;
+ padding:25px;
+ color:#aabbd8;
+}
+
+@media(max-width:600px){
+ .hero h1{font-size:38px}
+ nav{margin-top:10px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="logo">⚡ MOTIONVERSE</div>
+ <nav>
+  <a href="#home">Home</a>
+  <a href="#types">Types</a>
+  <a href="#lab">Motion Lab</a>
+  <a href="#game">Game</a>
+ </nav>
+</header>
+
+<div class="hero" id="home">
+ <p>WELCOME TO THE WORLD OF PHYSICS</p>
+ <h1>UNDERSTANDING MOTION</h1>
+ <p>Discover how everything around us moves!</p>
+ <a href="#types" class="btn">Explore Motion ↓</a>
+</div>
+
+<section>
+ <h2 class="heading">What is Motion?</h2>
+ <p class="intro">
+ Motion is the change in position of an object with time.
+ Everything around us, from moving cars to spinning fans,
+ shows different types of motion. Let's explore them!
+ </p>
+</section>
+
+<section id="types">
+<h2 class="heading">🚀 Types of Motion</h2>
+<p class="intro">Click on any card to discover more information!</p>
+<br>
+
+<div class="grid">
+
+<div class="card" onclick="expand(this)">
+ <div class="emoji">🚗</div>
+ <h3>1. Rectilinear Motion</h3>
+ <p>Movement of an object along a straight line.</p>
+ <p class="more">Example: A train moving on a straight railway track. Its path is straight.</p>
+ <div class="animation"><div class="ball move"></div></div>
+ <p class="more">Key feature: Straight path.</p>
+</div>
+
+<div class="card" onclick="expand(this)">
+ <div class="emoji">🎡</div>
+ <h3>2. Circular Motion</h3>
+ <p>Movement of an object along a circular path.</p>
+ <p class="more">Example: A stone tied to a string and rotated in a circle.</p>
+ <div class="animation"><div class="orbit"></div></div>
+ <p class="more">Key feature: Circular path.</p>
+</div>
+
+<div class="card" onclick="expand(this)">
+ <div class="emoji">🌀</div>
+ <h3>3. Rotational Motion</h3>
+ <p>When an object spins around its own axis.</p>
+ <p class="more">Example: A spinning ceiling fan or a rotating wheel.</p>
+ <div class="animation"><div class="orbit"></div></div>
+ <p class="more">Key feature: Spinning around an axis.</p>
+</div>
+
+<div class="card" onclick="expand(this)">
+ <div class="emoji">⏰</div>
+ <h3>4. Oscillatory Motion</h3>
+ <p>Repeated to-and-fro movement around a fixed position.</p>
+ <p class="more">Example: A swinging pendulum.</p>
+ <div class="animation"><div class="swing"></div></div>
+ <p class="more">Key feature: Back-and-forth movement.</p>
+</div>
+
+<div class="card" onclick="expand(this)">
+ <div class="emoji">🌍</div>
+ <h3>5. Periodic Motion</h3>
+ <p>Motion that repeats itself after equal intervals of time.</p>
+ <p class="more">Example: The Earth revolving around the Sun.</p>
+ <div class="animation"><div class="orbit"></div></div>
+ <p class="more">Key feature: Repeats at regular time intervals.</p>
+</div>
+
+<div class="card" onclick="expand(this)">
+ <div class="emoji">🚦</div>
+ <h3>6. Non-Periodic Motion</h3>
+ <p>Motion that does not repeat itself at regular intervals of time.</p>
+ <p class="more">Example: A car moving through busy traffic, stopping and starting irregularly.</p>
+ <div class="animation"><div class="ball" id="irregular"></div></div>
+ <p class="more">Key feature: No regular repetition.</p>
+</div>
+
+</div>
+</section>
+
+<section id="lab">
+<h2 class="heading">🔬 Interactive Motion Lab</h2>
+<p class="intro">Choose a motion and watch the demonstration!</p>
+<br>
+
+<div class="controls">
+ <select id="motionSelect" onchange="changeMotion()"
+ style="padding:12px;border-radius:9px;background:#243657;color:white;border:0">
+  <option value="linear">Rectilinear Motion</option>
+  <option value="circular">Circular Motion</option>
+  <option value="oscillatory">Oscillatory Motion</option>
+  <option value="rotational">Rotational Motion</option>
+  <option value="irregular">Non-Periodic Motion</option>
+ </select>
+
+ <div id="demo">
+  <div id="demoBall">⚽</div>
+ </div>
+
+ <button class="btn" onclick="toggleAnimation()">▶ Play / Pause</button>
+ <button class="btn" onclick="changeMotion()">↻ Reset</button>
+ <p class="info" id="demoInfo">A ball moving in a straight line.</p>
+</div>
+</section>
+
+<section id="game">
+<h2 class="heading">🎮 Motion Challenge</h2>
+<p class="intro">Can you identify the correct type of motion?</p>
+<br>
+
+<div class="game">
+ <p id="progress">QUESTION 1 OF 6</p>
+ <h2 id="question">A spinning ceiling fan shows which motion?</h2>
+ <div id="options"></div>
+ <p id="feedback">Choose your answer!</p>
+ <p id="score">Score: 0</p>
+ <button class="btn" onclick="nextQuestion()" style="text-align:center">Next Question →</button>
+</div>
+</section>
+
+<footer>
+ <h3>⚡ MOTIONVERSE</h3>
+ <p>Learn • Explore • Experiment</p>
+ <p>Science makes the world exciting!</p>
+</footer>
+
+<script>
+
+// Expand cards
+function expand(card){
+ card.classList.toggle("active");
+}
+
+// Motion lab
+let running=true;
+let demo=document.getElementById("demoBall");
+let selected="linear";
+
+function changeMotion(){
+ selected=document.getElementById("motionSelect").value;
+ demo.style.animation="none";
+ demo.style.transform="none";
+ demo.style.left="10px";
+ demo.style.top="70px";
+
+ let descriptions={
+  linear:"A ball moving along a straight line.",
+  circular:"An object travelling along a circular path.",
+  oscillatory:"An object moving repeatedly to and fro.",
+  rotational:"An object spinning around its own axis.",
+  irregular:"An object changing direction and speed irregularly."
+ };
+
+ document.getElementById("demoInfo").innerText=descriptions[selected];
+
+ if(selected==="linear")
+  demo.style.animation="linearDemo 2s infinite alternate ease-in-out";
+ if(selected==="circular")
+  demo.style.animation="circularDemo 3s linear infinite";
+ if(selected==="oscillatory")
+  demo.style.animation="oscillatoryDemo 1.5s infinite alternate ease-in-out";
+ if(selected==="rotational")
+  demo.style.animation="rotateDemo 1.5s linear infinite";
+ if(selected==="irregular")
+  demo.style.animation="irregularDemo 4s infinite";
+
+ running=true;
+}
+
+function toggleAnimation(){
+ running=!running;
+ demo.style.animationPlayState=running?"running":"paused";
+}
+
+let style=document.createElement("style");
+style.innerHTML=`
+@keyframes linearDemo{
+ from{left:10px}to{left:85%}
+}
+@keyframes circularDemo{
+ 0%{left:45%;top:0}
+ 25%{left:80%;top:70px}
+ 50%{left:45%;top:125px}
+ 75%{left:10%;top:70px}
+ 100%{left:45%;top:0}
+}
+@keyframes oscillatoryDemo{
+ from{left:10px}to{left:85%}
+}
+@keyframes rotateDemo{
+ to{transform:rotate(360deg)}
+}
+@keyframes irregularDemo{
+ 0%{left:10px;top:10px}
+ 20%{left:75%;top:110px}
+ 40%{left:35%;top:30px}
+ 60%{left:85%;top:65px}
+ 80%{left:15%;top:120px}
+ 100%{left:60%;top:5px}
+}`;
+document.head.appendChild(style);
+
+// Quiz
+const questions=[
+{q:"A spinning ceiling fan shows which motion?",a:["Rectilinear","Rotational","Random","Non-periodic"],c:1},
+{q:"A train moving on a straight track shows:",a:["Circular","Oscillatory","Rectilinear","Rotational"],c:2},
+{q:"A swinging pendulum shows:",a:["Oscillatory","Random","Rectilinear","Rotational"],c:0},
+{q:"Which motion repeats after equal intervals of time?",a:["Non-periodic","Periodic","Random","Rectilinear"],c:1},
+{q:"A car stopping and starting irregularly in traffic shows:",a:["Periodic","Circular","Non-periodic","Rotational"],c:2},
+{q:"A stone tied to a string and rotated in a circle shows:",a:["Circular","Rectilinear","Oscillatory","Non-periodic"],c:0}
+];
+
+let index=0;
+let points=0;
+let answered=false;
+
+function showQuestion(){
+ let q=questions[index];
+ document.getElementById("question").innerText=q.q;
+ document.getElementById("progress").innerText=
+ "QUESTION "+(index+1)+" OF "+questions.length;
+
+ document.getElementById("options").innerHTML=q.a.map((a,i)=>
+ `<button onclick="answer(${i})">${a}</button>`).join("");
+
+ document.getElementById("feedback").innerText="Choose your answer!";
+ document.getElementById("score").innerText="Score: "+points;
+ answered=false;
+}
+
+function answer(i){
+ if(answered)return;
+ answered=true;
+
+ if(i===questions[index].c){
+ points++;
+ document.getElementById("feedback").innerText="🎉 Correct! Excellent!";
+ }else{
+ document.getElementById("feedback").innerText=
+ "❌ Correct answer: "+questions[index].a[questions[index].c];
+ }
+
+ document.getElementById("score").innerText="Score: "+points;
+}
+
+function nextQuestion(){
+ if(!answered){
+ document.getElementById("feedback").innerText="Answer the question first!";
+ return;
+ }
+
+ index++;
+
+ if(index>=questions.length){
+ document.getElementById("question").innerText="🏆 QUIZ COMPLETED!";
+ document.getElementById("options").innerHTML="";
+ document.getElementById("progress").innerText="FINAL RESULT";
+ document.getElementById("feedback").innerText=
+ points>=5?"Amazing work! You are a Motion Master!":"Good effort! Keep practising!";
+ document.querySelector(".game > button").innerText="↻ Play Again";
+ document.querySelector(".game > button").onclick=restart;
+ return;
+ }
+ showQuestion();
+}
+
+function restart(){
+ index=0;
+ points=0;
+ document.querySelector(".game > button").innerText="Next Question →";
+ document.querySelector(".game > button").onclick=nextQuestion;
+ showQuestion();
+}
+
+showQuestion();
+changeMotion();
+
+</script>
+</body>
+</html>
